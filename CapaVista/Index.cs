@@ -1,5 +1,6 @@
 ﻿using System;
 using CapaLogica;
+using CapaLogica.Login;
 using CapaSoporte;
 using System.Windows.Forms;
 
@@ -16,76 +17,95 @@ namespace CapaVista
         }
 
         #region BUTTONS
-        private void BtnDispose_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
-            InitialState();
-            CVControlsOption.ReadOnly(gbData, false);
-            gbData.Visible = true;
-            btnSave.Visible = true;
-            btnClear.Visible = true;
-            btnAddTel.Visible = true;
-            btnClose.Visible = true;
-            create = true;
+            if (CLLoginPermissions.Permissions("C"))
+            {
+                InitialState();
+                CVControlsReadOnly.ReadOnly(gbData, false);
+                gbData.Visible = true;
+                btnSave.Visible = true;
+                btnClear.Visible = true;
+                btnCancel.Visible = true;
+                create = true;
+            }
+            else MessageBox.Show("No tiene permisos suficientes", "DENEGADO");
+
         }
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-            InitialState();
-            pnlSearch.Visible = true;
-            panelButtonsFLP.Visible = true;
-            btnClose.Visible = true;
-            btnSave.Visible = false;
-            btnClear.Visible = false;
+            if (CLLoginPermissions.Permissions("R"))
+            {
+                InitialState();
+                panelSearch.Visible = true;
+                btnClose.Visible = true;
+                btnSave.Visible = false;
+                btnClear.Visible = false;
+            }
+            else MessageBox.Show("No tiene permisos suficientes", "DENEGADO");
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            CVControlsOption.ReadOnly(gbData, false);
-            btnSave.Visible = true;
-            btnAddTel.Visible = true;
+            if (CLLoginPermissions.Permissions("U"))
+            {
+                CVControlsReadOnly.ReadOnly(gbData, false);
+                btnSave.Visible = true;
+                btnAddTel.Visible = true;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+                btnCancel.Visible = true;
+            }
+            else MessageBox.Show("No tiene permisos suficientes", "DENEGADO");
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if(lblIDPersona.Text == string.Empty) MessageBox.Show("Seleccionar una Persona de la Grilla \n\n (Doble Click sobre la fila)");
-            else
+            if (CLLoginPermissions.Permissions("D"))
             {
-                DialogResult result = MessageBox.Show($"Eliminará el registro de manera permanente","ATENCION",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
+                if (lblIDPersona.Text == string.Empty) MessageBox.Show("Seleccionar una Persona de la Grilla \n\n (Doble Click sobre la fila)");
+                else
                 {
-                    try
+                    DialogResult result = MessageBox.Show($"Eliminará el registro de manera permanente", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
-                        if (new CLDelete
+                        try
                         {
-                            IdPersona = lblIDPersona.Text
-                        }.Personas_Delete())
-                        {
-                            MessageBox.Show(success);
-                            InitialState();
-                            btnRead.PerformClick();
-                            btnSearch.PerformClick();
+                            if (new CLDelete
+                            {
+                                IdPersona = lblIDPersona.Text
+                            }.Personas_Delete())
+                            {
+                                MessageBox.Show(success);
+                                InitialState();
+                                btnRead.PerformClick();
+                                btnSearch.PerformClick();
+                            }
+                            else MessageBox.Show(error);
                         }
-                        else MessageBox.Show(error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(error + ex.ToString());
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(error + ex.ToString());
+                        }
                     }
                 }
             }
+            else MessageBox.Show("No tiene permisos suficientes", "DENEGADO");
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            CLRead cLRead = new CLRead();
+            string parameter = txtSearch.Text;
+            InitialState();
+            panelSearch.Visible = true;
             try
             {
-                cLRead.Parameter = txtSearch.Text;
+                CLRead cLRead = new CLRead
+                {
+                    Parameter = parameter
+                };
                 dgvData.DataSource = cLRead.Personas_Read();
 
                 dgvData.Visible = true;
@@ -104,60 +124,37 @@ namespace CapaVista
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (CVControlsOption.Empty(gbData)) MessageBox.Show("Debe completar todos los campos");
-            else
+            if (create)
             {
-                
                 try
                 {
-                    if (create)
-                    {
-                        if(new CLCreate
-                        {
-                            Nombre = txtPName.Text,
-                            Apellido = txtPSurname.Text,
-                            IdDoc = cmbTipoDoc.SelectedValue.ToString(),
-                            NumDoc = txtPDoc.Text,
-                            CUIL = mktxtPCUIL.Text.Replace("-", ""),
-                            Calle = txtPAdressName.Text,
-                            NumCalle = txtPAdressNum.Text,
-                            Piso = txtPFloor.Text,
-                            Depto = txtPDepto.Text,
-                            IdLocalidad = cmbLocalidad.SelectedValue.ToString()
-                        }.Personas_Create())
-                        {
-                            MessageBox.Show(success);
-                            InitialState();
-                            btnRead.PerformClick();
-                            btnSearch.PerformClick();
-                        }
-                        else MessageBox.Show(error);
-                    }
+                    if (CVControlsEmpty.Empty(gbData)) MessageBox.Show("Debe completar todos los campos");
                     else
                     {
-                        string idPersona = lblIDPersona.Text;
-                        if (
-                        new CLUpdate
+                        if (new CLRead().CMB_Verify(Convert.ToInt32(cmbLoc.SelectedValue)))
                         {
-                            IdPersona = idPersona,
-                            Nombre = txtPName.Text,
-                            Apellido = txtPSurname.Text,
-                            IdDoc = cmbTipoDoc.SelectedValue.ToString(),
-                            NumDoc = txtPDoc.Text,
-                            CUIL = mktxtPCUIL.Text.Replace("-", ""),
-                            Calle = txtPAdressName.Text,
-                            NumCalle = txtPAdressNum.Text,
-                            Piso = txtPFloor.Text,
-                            Depto = txtPDepto.Text,
-                            IdLocalidad = cmbLocalidad.SelectedValue.ToString()
-                        }.Personas_Update())
-                        {
-                            MessageBox.Show(success);
-                            InitialState();
-                            btnRead.PerformClick();
-                            btnSearch.PerformClick();
+                            if (new CLCreate
+                            {
+                                Nombre = txtPName.Text,
+                                Apellido = txtPSurname.Text,
+                                IdDoc = cmbTipoDoc.SelectedValue.ToString(),
+                                NumDoc = mktNumDoc.Text,
+                                CUIL = mktxtPCUIL.Text.Replace("-", ""),
+                                Calle = txtPAdressName.Text,
+                                NumCalle = txtPAdressNum.Text,
+                                Piso = txtPFloor.Text,
+                                Depto = txtPDepto.Text,
+                                IdLocalidad = cmbLoc.SelectedValue.ToString()
+                            }.Personas_Create())
+                            {
+                                MessageBox.Show(success);
+                                InitialState();
+                                btnRead.PerformClick();
+                                btnSearch.PerformClick();
+                            }
+                            else MessageBox.Show(error);
                         }
-                        else MessageBox.Show(error);
+                        else MessageBox.Show("Provincia->Partido->Localidad\nInválidos");
                     }
                 }
                 catch (Exception ex)
@@ -165,21 +162,65 @@ namespace CapaVista
                     MessageBox.Show(error + ex.ToString());
                 }
             }
-            
+            else 
+            {
+                try
+                {
+                    if (CVControlsEmpty.Empty(gbData)) MessageBox.Show("Debe completar todos los campos");
+                    else
+                    {
+                        if (new CLRead().CMB_Verify(Convert.ToInt32(cmbLoc.SelectedValue)))
+                        {
+                            string idPersona = lblIDPersona.Text;
+                            if (
+                            new CLUpdate
+                            {
+                                IdPersona = idPersona,
+                                Nombre = txtPName.Text,
+                                Apellido = txtPSurname.Text,
+                                IdDoc = cmbTipoDoc.SelectedValue.ToString(),
+                                NumDoc = mktNumDoc.Text,
+                                CUIL = mktxtPCUIL.Text.Replace("-", ""),
+                                Calle = txtPAdressName.Text,
+                                NumCalle = txtPAdressNum.Text,
+                                Piso = txtPFloor.Text,
+                                Depto = txtPDepto.Text,
+                                IdLocalidad = cmbLoc.SelectedValue.ToString()
+                            }.Personas_Update())
+                            {
+                                MessageBox.Show(success);
+                                InitialState();
+                                btnRead.PerformClick();
+                                btnSearch.PerformClick();
+                            }
+                            else MessageBox.Show(error);
+                        }
+                        else MessageBox.Show("Provincia->Partido->Localidad\nInválidos");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(error + ex.ToString());
+                }
+            }
         }
 
         private void BtnAddTel_Click(object sender, EventArgs e)
         {
-            
-            DialogResult result = new PopUpTelephones(lblIDPersona.Text).ShowDialog();
-            if(result == DialogResult.OK)
+            if (CLLoginPermissions.Permissions("U") || CLLoginPermissions.Permissions("C")
+                || CLLoginPermissions.Permissions("D"))
             {
-                dgvTel.DataSource = new CLRead()
+                DialogResult result = new PopUpTelephones(lblIDPersona.Text).ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    IDPersona = lblIDPersona.Text
+                    dgvTel.DataSource = new CLRead()
+                    {
+                        IDPersona = lblIDPersona.Text
+                    }
+                    .PersTel_Read();
                 }
-                .PersTel_Read();
             }
+            else MessageBox.Show("No tiene permisos suficientes", "DENEGADO");
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -191,6 +232,22 @@ namespace CapaVista
         {
             InitialState();
         }
+
+        private void BtnDispose_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            gbData.Visible = false;
+            btnDelete.Visible = false;
+            btnUpdate.Visible = false;
+            btnCancel.Visible = false;
+            btnClear.Visible = false;
+            btnSave.Visible = false;
+        }
+
         #endregion
 
         #region EVENTS
@@ -200,10 +257,8 @@ namespace CapaVista
             InitialState();
             lblActiveUSer.Text = CSActiveUser.Usuario;
             CVControlsOption.CMBLoad(cmbTipoDoc, "TipoDoc", "IDDOC", "DESCRIDOC");
-            CVControlsOption.CMBLoad(cmbLocalidad, "Localidades", "IDLOCALIDAD", "DESCRILOC");
-            CVControlsOption.CMBLoad(cmbPartido, "Partidos", "IDPARTIDO", "DESCRIPART");
             CVControlsOption.CMBLoad(cmbProvincia, "Provincias", "IDPROVINCIA", "DESCRIPCIA");
-            cmbLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbLoc.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPartido.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProvincia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoDoc.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -212,23 +267,28 @@ namespace CapaVista
         private void DgvData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnAddTel.Visible = false;
+            btnSave.Visible = false;
             CVCleanControls.CleanGB(gbData);
-            gbData.Visible = true;
-            CVControlsOption.ReadOnly(gbData,true);
+            CVControlsReadOnly.ReadOnly(gbData, true);
+            gbData.Visible = true;            
 
             var row = (DataGridViewRow)dgvData.Rows[e.RowIndex];
             try
             {
+                CVControlsOption.CMBLoad(cmbLoc, "Localidades", "IDLOCALIDAD", "DESCRILOC");
+                CVControlsOption.CMBLoad(cmbPartido, "Partidos", "IDPARTIDO", "DESCRIPART");
+
+
                 lblIDPersona.Text = row.Cells["IDPERSONA"].Value.ToString();
                 txtPName.Text = row.Cells["NOMBRE"].Value.ToString();
                 txtPSurname.Text = row.Cells["APELLIDO"].Value.ToString();
-                txtPDoc.Text = row.Cells["NUMDOC"].Value.ToString();
+                mktNumDoc.Text = row.Cells["NUMDOC"].Value.ToString();
                 txtPAdressName.Text = row.Cells["CALLE"].Value.ToString();
                 txtPAdressNum.Text = row.Cells["NUMCALLE"].Value.ToString();
                 txtPFloor.Text = row.Cells["PISO"].Value.ToString();
                 txtPDepto.Text = row.Cells["DEPTO"].Value.ToString();
                 mktxtPCUIL.Text =  row.Cells["CUIL"].Value.ToString();
-                cmbLocalidad.SelectedValue = Convert.ToInt32(row.Cells["IDLOCALIDAD"].Value); 
+                cmbLoc.SelectedValue = Convert.ToInt32(row.Cells["IDLOCALIDAD"].Value); 
                 cmbPartido.SelectedValue = Convert.ToInt32(row.Cells["IDPARTIDO"].Value);
                 cmbProvincia.SelectedValue = Convert.ToInt32(row.Cells["IDPROVINCIA"].Value);
                 cmbTipoDoc.SelectedValue = Convert.ToInt32(row.Cells["IDDOC"].Value);
@@ -238,8 +298,11 @@ namespace CapaVista
                     IDPersona = lblIDPersona.Text
                 }
                 .PersTel_Read();
-                btnDelete.Enabled = true;
-                btnUpdate.Enabled = true;
+
+                dgvTel.Columns["IDTELEFONO"].Visible = false;
+                btnDelete.Visible = true;
+                btnUpdate.Visible = true;
+                btnCancel.Visible = true;
 
             }
             catch (Exception ex)
@@ -254,6 +317,34 @@ namespace CapaVista
             CVCleanControls.CleanGB(gbData);
         }
 
+        private void CmbPartido_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CVControlsOption.CMBLoad(cmbLoc, "Localidades", "IDLOCALIDAD", "DESCRILOC",
+                "IDPARTIDO", cmbPartido.SelectedValue.ToString());
+
+        }
+
+        private void CmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CVControlsOption.CMBLoad(cmbPartido, "Partidos", "IDPARTIDO", "DESCRIPART",
+                "IDPROVINCIA", cmbProvincia.SelectedValue.ToString());
+            cmbLocalidad.DataSource = null;
+        }
+
+        private void TxtPName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CVControlsKeyPressEvents.OnlyLetters(e);
+        }
+
+        private void TxtPSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CVControlsKeyPressEvents.OnlyLetters(e);
+        }
+
+        private void TxtPAdressNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CVControlsKeyPressEvents.OnlyNumbers(e);
+        }
         #endregion
 
         #region METHODS
@@ -262,26 +353,24 @@ namespace CapaVista
         {
             dgvData.DataSource = null;
             dgvTel.DataSource = null;
-            pnlSearch.Visible = false;
+            panelSearch.Visible = false;
             dgvData.Visible = false;
             gbData.Visible = false;
             btnAddTel.Visible = false;
             btnSave.Visible = false;
             btnClear.Visible = false;
-            btnClose.Visible = false;
-            btnDelete.Enabled = false;
-            btnUpdate.Enabled = false;
+            btnDelete.Visible = false;
+            btnUpdate.Visible = false;
+            btnCancel.Visible = false;
             create = false;
             txtSearch.Text = "";
             lblIDPersona.Text = "";            
             CVDesingOptions.DgvDesing(dgvData);
             CVDesingOptions.DgvDesing(dgvTel);
             CVCleanControls.CleanGB(gbData);
-            CVControlsOption.ReadOnly(gbData, true);
+            CVControlsReadOnly.ReadOnly(gbData, true);
         }
 
         #endregion
-
-
     }
 }

@@ -8,7 +8,7 @@ namespace CapaLogica
 {
     public class CLCreate
     {
-        #region Attributes
+        #region ATTRIBUTES
         public string Nombre { private get; set; }
         public string Apellido { private get; set; }
         public string Calle { private get; set; }
@@ -31,7 +31,6 @@ namespace CapaLogica
                 int.TryParse(IdDoc, out int idDoc) &&
                 int.TryParse(NumDoc, out int numDoc) &&
                 int.TryParse(NumCalle, out int numCalle) &&
-                int.TryParse(Piso, out int piso) &&
                 int.TryParse(IdLocalidad, out int idlocalidad)
                 )
             {
@@ -44,8 +43,8 @@ namespace CapaLogica
                     CUIL = cUIL,
                     Calle = Calle.ToUpper(),
                     NumCalle = numCalle,
-                    Piso = piso,
-                    Depto = Depto,
+                    Piso = Piso,
+                    Depto = Depto.ToUpper(),
                     IdLocalidad = idlocalidad
                 }.CreatePersona() == 1) return true;
                 else return false;

@@ -47,7 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CVCleanControls.cs" />
+    <Compile Include="CVControlsEmpty.cs" />
+    <Compile Include="CVControlsKeyPressEvents.cs" />
     <Compile Include="CVControlsOption.cs" />
+    <Compile Include="CVControlsReadOnly.cs" />
     <Compile Include="CVDesingOptions.cs" />
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>

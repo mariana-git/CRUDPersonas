@@ -17,7 +17,7 @@ namespace CapaDatos
         public int IdDoc { private get; set; }
         public int NumDoc { private get; set; }
         public int NumCalle { private get; set; }
-        public int Piso { private get; set; }
+        public string Piso { private get; set; }
         public int IdLocalidad { private get; set; }
         public int Telefono { private get; set; }
         public int IdTelefono { private get; set; }

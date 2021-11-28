@@ -7,7 +7,7 @@ namespace CapaDatos
     public class CDExecuteNonQuery : CDConnection
     {
         protected int NonQuerySP(string procedure, string nombre, string apellido, int idDoc, int numDoc, double CUIL,
-            string calle, int numCalle, int piso, string depto, int idLocalidad, int idPersona)
+            string calle, int numCalle, string piso, string depto, int idLocalidad, int idPersona)
         {
             using (SqlCommand Command = new SqlCommand())
             {
@@ -32,7 +32,7 @@ namespace CapaDatos
             }
         }
         protected int NonQuerySP(string procedure, string nombre, string apellido, int idDoc, int numDoc, double CUIL,
-            string calle, int numCalle, int piso, string depto, int idLocalidad)
+            string calle, int numCalle, string piso, string depto, int idLocalidad)
         {
             using (SqlCommand Command = new SqlCommand())
             {

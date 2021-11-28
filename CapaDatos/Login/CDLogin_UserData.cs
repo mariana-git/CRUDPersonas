@@ -14,15 +14,16 @@ namespace CapaDatos.Login
 
         public void Users_Read()
         {
-            using (DataTable dt = ReaderQ($"SELECT IDPERSONA,IDDIRECTORIO, INTENTOS, USUARIO, " +
-                $"IDPERMISO  FROM Usuarios WHERE USUARIO = '{Usuario}' AND CLAVE = '{Clave}'"))
+            using (DataTable dt = ReaderQ($"SELECT u.IDUSUARIO,IDDIRECTORIO, USUARIO, TIPOPERM " +
+                $"FROM Usuarios u, Permisos p, UsuPerm up WHERE u.IDUSUARIO = up.IDUSUARIO " +
+                $"AND up.IDPERMISO = p.IDPERMISO " +
+                $"AND (USUARIO = '{Usuario}' AND CLAVE = '{Clave}')"))
             {
                 //cargo en la Capa Soporte los datos del usuario 
-                CSActiveUser.IdPersona = Convert.ToInt32(dt.Rows[0]["IDPERSONA"]);
+                CSActiveUser.IdUsuario = Convert.ToInt32(dt.Rows[0]["IDUSUARIO"]);
                 CSActiveUser.IdDirectorio = Convert.ToInt32(dt.Rows[0]["IDDIRECTORIO"]);
-                CSActiveUser.Intentos = Convert.ToInt32(dt.Rows[0]["INTENTOS"]);
                 CSActiveUser.Usuario = dt.Rows[0]["USUARIO"].ToString();
-                CSActiveUser.IdPermiso = Convert.ToInt32(dt.Rows[0]["IDPERMISO"]);
+                CSActiveUser.TipoPermiso = dt.Rows[0]["TIPOPERM"].ToString();
             }
             ;
         }

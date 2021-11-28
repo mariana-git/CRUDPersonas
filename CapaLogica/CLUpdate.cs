@@ -31,7 +31,6 @@ namespace CapaLogica
                 int.TryParse(IdDoc, out int idDoc) &&
                 int.TryParse(NumDoc, out int numDoc) &&
                 int.TryParse(NumCalle, out int numCalle) &&
-                int.TryParse(Piso, out int piso) &&
                 int.TryParse(IdLocalidad, out int idlocalidad) &&
                 int.TryParse(IdPersona, out int idpersona) 
                 )
@@ -46,7 +45,7 @@ namespace CapaLogica
                     CUIL = cUIL,
                     Calle = Calle.ToUpper(),
                     NumCalle = numCalle,
-                    Piso = piso,
+                    Piso = Piso,
                     Depto = Depto,
                     IdLocalidad = idlocalidad
                 }.UpdatePersona() == 1) return true;

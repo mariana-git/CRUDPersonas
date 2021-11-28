@@ -58,10 +58,10 @@ namespace CapaVista
             this.panelLogin.Controls.Add(this.txtPass);
             this.panelLogin.Controls.Add(this.txtUser);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelLogin.Location = new System.Drawing.Point(232, 0);
+            this.panelLogin.Location = new System.Drawing.Point(174, 0);
             this.panelLogin.Margin = new System.Windows.Forms.Padding(0);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(371, 405);
+            this.panelLogin.Size = new System.Drawing.Size(278, 329);
             this.panelLogin.TabIndex = 3;
             // 
             // lblMensajeError
@@ -72,9 +72,10 @@ namespace CapaVista
             this.lblMensajeError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(10)))));
             this.lblMensajeError.Image = ((System.Drawing.Image)(resources.GetObject("lblMensajeError.Image")));
             this.lblMensajeError.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMensajeError.Location = new System.Drawing.Point(51, 257);
+            this.lblMensajeError.Location = new System.Drawing.Point(38, 209);
+            this.lblMensajeError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMensajeError.Name = "lblMensajeError";
-            this.lblMensajeError.Size = new System.Drawing.Size(176, 22);
+            this.lblMensajeError.Size = new System.Drawing.Size(154, 18);
             this.lblMensajeError.TabIndex = 8;
             this.lblMensajeError.Text = "      Mensaje de Error";
             this.lblMensajeError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -88,10 +89,10 @@ namespace CapaVista
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(9)))), ((int)(((byte)(183)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(302, 2);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Location = new System.Drawing.Point(226, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 62);
+            this.btnClose.Size = new System.Drawing.Size(50, 50);
             this.btnClose.TabIndex = 7;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -99,19 +100,19 @@ namespace CapaVista
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(201)))), ((int)(((byte)(240)))));
-            this.panel3.Location = new System.Drawing.Point(80, 217);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Location = new System.Drawing.Point(60, 176);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(219, 1);
+            this.panel3.Size = new System.Drawing.Size(164, 1);
             this.panel3.TabIndex = 6;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(201)))), ((int)(((byte)(240)))));
-            this.panel2.Location = new System.Drawing.Point(79, 142);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(59, 115);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(219, 1);
+            this.panel2.Size = new System.Drawing.Size(164, 1);
             this.panel2.TabIndex = 5;
             // 
             // btnLogin
@@ -123,10 +124,10 @@ namespace CapaVista
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Tempus Sans ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(219)))));
-            this.btnLogin.Location = new System.Drawing.Point(79, 307);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogin.Location = new System.Drawing.Point(59, 249);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(217, 44);
+            this.btnLogin.Size = new System.Drawing.Size(163, 36);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -137,9 +138,10 @@ namespace CapaVista
             this.lblSegundo.AutoSize = true;
             this.lblSegundo.Font = new System.Drawing.Font("Tempus Sans ITC", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSegundo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(201)))), ((int)(((byte)(240)))));
-            this.lblSegundo.Location = new System.Drawing.Point(77, 161);
+            this.lblSegundo.Location = new System.Drawing.Point(58, 131);
+            this.lblSegundo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSegundo.Name = "lblSegundo";
-            this.lblSegundo.Size = new System.Drawing.Size(136, 28);
+            this.lblSegundo.Size = new System.Drawing.Size(111, 23);
             this.lblSegundo.TabIndex = 3;
             this.lblSegundo.Text = "Constraseña";
             // 
@@ -149,9 +151,10 @@ namespace CapaVista
             this.lblPrimero.AutoSize = true;
             this.lblPrimero.Font = new System.Drawing.Font("Tempus Sans ITC", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrimero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(201)))), ((int)(((byte)(240)))));
-            this.lblPrimero.Location = new System.Drawing.Point(77, 89);
+            this.lblPrimero.Location = new System.Drawing.Point(58, 72);
+            this.lblPrimero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrimero.Name = "lblPrimero";
-            this.lblPrimero.Size = new System.Drawing.Size(92, 28);
+            this.lblPrimero.Size = new System.Drawing.Size(76, 23);
             this.lblPrimero.TabIndex = 2;
             this.lblPrimero.Text = "Usuario";
             // 
@@ -159,12 +162,12 @@ namespace CapaVista
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(12)))), ((int)(((byte)(168)))));
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Font = new System.Drawing.Font("Arial", 11F);
             this.txtPass.ForeColor = System.Drawing.Color.White;
-            this.txtPass.Location = new System.Drawing.Point(81, 188);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPass.Location = new System.Drawing.Point(60, 153);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(2);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(217, 27);
+            this.txtPass.Size = new System.Drawing.Size(126, 17);
             this.txtPass.TabIndex = 1;
             this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPass.Enter += new System.EventHandler(this.TxtPass_Enter);
@@ -173,12 +176,12 @@ namespace CapaVista
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(12)))), ((int)(((byte)(168)))));
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.Font = new System.Drawing.Font("Arial", 11F);
             this.txtUser.ForeColor = System.Drawing.Color.White;
-            this.txtUser.Location = new System.Drawing.Point(80, 114);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUser.Location = new System.Drawing.Point(61, 92);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(2);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(217, 27);
+            this.txtUser.Size = new System.Drawing.Size(126, 17);
             this.txtUser.TabIndex = 0;
             this.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUser.Enter += new System.EventHandler(this.TxtUser_Enter);
@@ -186,24 +189,23 @@ namespace CapaVista
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CapaVista.Properties.Resources.key;
-            this.pictureBox1.Location = new System.Drawing.Point(35, 102);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 83);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(170, 166);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 135);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(12)))), ((int)(((byte)(163)))));
-            this.ClientSize = new System.Drawing.Size(603, 405);
+            this.ClientSize = new System.Drawing.Size(452, 329);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";

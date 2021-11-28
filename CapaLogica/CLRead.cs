@@ -12,6 +12,8 @@ namespace CapaLogica
         public string IDPersona { private get; set; }
         public string Table { private get; set; }
         public string Description { private get; set; }
+        public string Condition { private get; set; }
+        public string Column { private get; set; }
 
         readonly CDRead cDRead = new CDRead();
 
@@ -52,9 +54,24 @@ namespace CapaLogica
             else
             {
                 cDRead.Description = Description;
-                cDRead.Table = Table;                
-                return cDRead.CMBLoad_ReadAll();
+                cDRead.Table = Table;
+                if (string.IsNullOrEmpty(Condition) 
+                    || !int.TryParse(Condition, out int condition) || string.IsNullOrEmpty(Column))
+                {                    
+                    return cDRead.CMBLoad_ReadAll();
+                }
+                else
+                {
+                    cDRead.Condition = condition;
+                    cDRead.Column = Column;
+                    return cDRead.CMBLoad_Search();
+                }
             }
+        }
+        public bool CMB_Verify(int idLoc)
+        {
+            if (cDRead.CMBLoad_Verify(idLoc).Rows.Count > 0) return true;
+            else return false;
         }
     }
 }

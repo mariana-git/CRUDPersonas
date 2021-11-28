@@ -8,10 +8,9 @@ namespace CapaSoporte
 {
     public static class CSActiveUser
     {
-        public static int IdPersona {  get; set; }
+        public static int IdUsuario {  get; set; }
         public static int IdDirectorio {  get; set; }
-        public static int Intentos {  get; set; }
         public static string Usuario { get; set; }
-        public static int IdPermiso { get; set; }
+        public static string TipoPermiso { get; set; }        
     }
 }

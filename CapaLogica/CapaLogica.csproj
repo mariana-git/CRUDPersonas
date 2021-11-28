@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,7 @@
     <Compile Include="CLDelete.cs" />
     <Compile Include="CLRead.cs" />
     <Compile Include="CLUpdate.cs" />
+    <Compile Include="Login\CLLoginPermissions.cs" />
     <Compile Include="Login\CLLoginValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
