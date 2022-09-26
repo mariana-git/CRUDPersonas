@@ -3,7 +3,7 @@
 
 
 # 🔘TP FINAL: AMBC PERSONAS + LOGIN🔘
-[![Alt text](https://user-images.githubusercontent.com/88113403/192348583-b00091f5-4e09-4062-907c-379f3797a8e4.gif)](https://www.youtube.com/watch?v=PLzBp6630lD74aEPzaWNdhsWFnJy07CRuO)
+[![Alt text](https://user-images.githubusercontent.com/88113403/192348583-b00091f5-4e09-4062-907c-379f3797a8e4.gif)](https://www.youtube.com/watch?v=Lmzz-tfX9hA)
 
 </div>
 
