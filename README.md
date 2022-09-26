@@ -2,8 +2,13 @@
 <div align="center">
 
 
-# 🔘TP FINAL: AMBC PERSONAS + LOGIN🔘
-[![Alt text](https://user-images.githubusercontent.com/88113403/192348583-b00091f5-4e09-4062-907c-379f3797a8e4.gif)](https://www.youtube.com/watch?v=Lmzz-tfX9hA)
+# ◻️〰️▪️ TP FINAL: AMBC PERSONAS + LOGIN 〰️✤
+
+[![Alt text](https://img.shields.io/badge/%E2%96%B6-Ver%20En%20Youtube-red)](https://www.youtube.com/watch?v=ea_LxuxhafM)
+
+[![Alt text](https://user-images.githubusercontent.com/88113403/192348583-b00091f5-4e09-4062-907c-379f3797a8e4.gif)](https://www.youtube.com/watch?v=ea_LxuxhafM)
+
+
 
 </div>
 
